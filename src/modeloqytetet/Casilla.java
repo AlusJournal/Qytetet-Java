@@ -23,7 +23,7 @@ public class Casilla {
         numHoteles = 0; 
         numCasas = 0; 
         casilla = TipoCasilla.CALLE; 
-        setTituloPropiedad(titulo);
+        setTitulo(titulo);
     }
     
     public Casilla(int numeroCasilla, TipoCasilla casilla){
@@ -31,35 +31,7 @@ public class Casilla {
         this.casilla = casilla;
     }
     
-    public int getNumeroCasilla(){
-        return numeroCasilla;
-    }
-    
-    public int getCoste(){
-        return coste;
-    }
-    
-    public void setCoste(int coste){
-        this.coste = coste;
-    }
-    
-    public int getNumHoteles(){
-        return numHoteles;
-    }
-    
-    public void setNumHoteles(int numHoteles){
-        this.numHoteles = numHoteles;
-    }
-    
-    public int getNumCasas(){
-        return numCasas; 
-    }
-    
-    public void setNumCasas(int numCasas){
-        this.numCasas = numCasas;
-    }
-    
-    public TipoCasilla getCasilla(){
+    public TipoCasilla getTipo(){
         return casilla;
     }
     
@@ -67,8 +39,104 @@ public class Casilla {
         return titulo;
     }
     
-    private void setTituloPropiedad(TituloPropiedad titulo){
+    TituloPropiedad asignarPropietario(Jugador jugador){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int calcularValorHipoteca(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int cancelarHipoteca(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int cobrarAlquiler(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int edificarCasa(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int edificarHotel(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    boolean estaHipotecada(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    
+    public int getCoste(){
+        return coste;
+    }
+    
+    int getCosteHipoteca(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public int getNumeroCasilla(){
+        return numeroCasilla;
+    }
+    
+    public int getNumCasas(){
+        return numCasas; 
+    }
+    
+    public int getNumHoteles(){
+        return numHoteles;
+    }
+    
+    int getPrecioEdificar(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    int hipotecar(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    int precioTotalComprar(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    boolean propietarioEncarcelado(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    boolean sePuedeEdificarCasa(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    boolean sePuedeEdificarHotel(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void setNumHoteles(int numHoteles){
+        this.numHoteles = numHoteles;
+    }
+    
+    public void setNumCasas(int numCasas){
+        this.numCasas = numCasas;
+    }
+    
+    boolean soyEdificable(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    boolean tengoPropietario(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int venderTitulo(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    private void setTitulo(TituloPropiedad titulo){
         this.titulo = titulo;
+    }
+    
+    void asignarTituloPropiedad(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void setCoste(int coste){
+        this.coste = coste;
     }
     
     @Override

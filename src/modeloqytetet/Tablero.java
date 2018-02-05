@@ -19,6 +19,27 @@ public class Tablero {
         inicializar();
     }
     
+    boolean esCasillaCarcel(int numeroCasilla){
+        return numeroCasilla == getCarcel().getNumeroCasilla();
+    }
+    
+    public Casilla getCarcel(){
+        return carcel; 
+    }
+    
+    Casilla obtenerCasillaNumero(int numeroCasilla){
+        for (Casilla c: casillas){
+            if (c.getNumeroCasilla() == numeroCasilla){
+                return c; 
+            }
+        }
+        return null; 
+    }
+    
+    Casilla obtenerNuevaCasilla(Casilla casilla, int desplazamiento){
+        return obtenerCasillaNumero((casilla.getNumeroCasilla() + desplazamiento) % Qytetet.getInstance().MAX_CASILLAS);
+    }
+    
     private void inicializar(){
         casillas = new ArrayList();
         
@@ -66,10 +87,6 @@ public class Tablero {
         casillas.add(daredevil);
         Casilla shadowhunters = new Casilla(1, 700, new TituloPropiedad("ShadowHunters", 50, 10, 150, 250));
         casillas.add(shadowhunters);
-    }
-    
-    public Casilla getCarcel(){
-        return carcel; 
     }
     
     @Override

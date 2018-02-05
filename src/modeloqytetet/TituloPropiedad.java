@@ -16,6 +16,8 @@ public class TituloPropiedad {
     private final float factorRevalorizacion; 
     private final int hipotecaBase; 
     private final int precioEdificar; 
+    private Jugador propietario;
+    private Casilla casillaActual;
     
     public TituloPropiedad(String nombre, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar){
         this.nombre = nombre; 
@@ -26,16 +28,8 @@ public class TituloPropiedad {
         this.precioEdificar = precioEdificar;
     }
     
-    public String getNombre(){
-        return nombre; 
-    }
-    
-    public boolean getHipotecada(){
-        return hipotecada; 
-    }
-    
-    public void setHipotecada(boolean hipotecada){
-        this.hipotecada = hipotecada; 
+    void cobrarAlquiler(int coste){
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     public int getAlquilerBase(){
@@ -50,8 +44,36 @@ public class TituloPropiedad {
         return hipotecaBase;
     }
     
+    public boolean getHipotecada(){
+        return hipotecada; 
+    }
+    
+    public String getNombre(){
+        return nombre; 
+    }
+       
     public int getPrecioEdificar(){
         return precioEdificar;
+    }
+    
+    boolean propietarioEncarcelado(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void setCasilla(Casilla casilla){
+        this.casillaActual = casilla;
+    }
+    
+    public void setHipotecada(boolean hipotecada){
+        this.hipotecada = hipotecada; 
+    }
+    
+    public void setPropietario(Jugador propietario){
+        this.propietario = propietario;
+    }
+    
+    boolean tengoPropietario(){
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     @Override

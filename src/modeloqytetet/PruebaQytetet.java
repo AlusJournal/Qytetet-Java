@@ -53,7 +53,7 @@ public class PruebaQytetet {
     }
     
     public static void main(String[] args) {
-       PruebaQytetet prueba = new PruebaQytetet(); 
+       PruebaQytetet prueba = new PruebaQytetet();
        prueba.inicializarSorpresas();
        ArrayList<Sorpresa> nueva =new ArrayList(); 
        nueva = prueba.valorCero();
