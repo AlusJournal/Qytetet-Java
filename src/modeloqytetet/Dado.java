@@ -5,6 +5,8 @@
  */
 package modeloqytetet;
 
+import java.util.Random;
+
 /**
  *
  * @author Paula Ruiz
@@ -22,6 +24,9 @@ public class Dado {
     
     //Metodos
     int tirar(){
-        throw new UnsupportedOperationException("Sin implementar"); 
+        Random rnd = new Random();
+        int i = rnd.nextInt(5);
+        i++;
+        return i;
     }
 }

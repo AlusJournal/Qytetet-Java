@@ -63,7 +63,7 @@ public class Qytetet {
     {
         throw new UnsupportedOperationException("Sin implementar"); 
     }
-    public void inicializarJuego(ArrayList<Jugador> nombres){
+    public void inicializarJuego(ArrayList<String> nombres){
         throw new UnsupportedOperationException("Sin implementar"); 
     }
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo){
@@ -72,14 +72,26 @@ public class Qytetet {
     public boolean jugar(){
         throw new UnsupportedOperationException("Sin implementar"); 
     }
-    public ArrayList<Jugador> obtenerRanking(){
+    public ArrayList<String> obtenerRanking(){
         throw new UnsupportedOperationException("Sin implementar"); 
     }
     public ArrayList<Casilla> propiedadesHipotecadasJugador(boolean hipotecada){
-        throw new UnsupportedOperationException("Sin implementar"); 
+        ArrayList<TituloPropiedad> titulos = jugadorActual.obtenerPropiedadesHipotecadas(hipotecada);
+        ArrayList<Casilla> casillas = new ArrayList();
+        
+        for (TituloPropiedad t: titulos){
+            casillas.add(t.getCasilla());
+        }
+        
+        return casillas;
     }
     public Jugador siguienteJugador(){
-        throw new UnsupportedOperationException("Sin implementar"); 
+         int indice = jugadores.indexOf(jugadorActual);
+         if (indice < (jugadores.size()-1))
+            jugadorActual = jugadores.get(indice+1);
+        else
+            jugadorActual = jugadores.get(0);
+        return jugadorActual;
     }
     public boolean venderPropiedad(Casilla casilla){
         throw new UnsupportedOperationException("Sin implementar"); 
@@ -99,15 +111,30 @@ public class Qytetet {
         mazo.add(new Sorpresa("Matt Murdock te ha defendido en un juicio y debes pagar sus honorarios", -700, TipoSorpresa.PAGARCOBRAR));
         mazo.add(new Sorpresa("Elisabeth II te ha dado un indulto y puedes abandonar la prisión", 0, TipoSorpresa.SALIRCARCEL));
     }
-    private void inicializarJugadores(ArrayList<Jugador> nombres){
-        for (Jugador j: nombres){
-            jugadores.add(j);
+    private void inicializarJugadores(ArrayList<String> nombres){
+        for (String j: nombres){
+            jugadores.add(new Jugador(j));
         } 
     }
+    
     private void inicializarTablero(){
         tablero = new Tablero();  
     }
+    
     private void salidaJugadores(){
-        throw new UnsupportedOperationException("Sin implementar"); 
+        for (Jugador j: jugadores){
+            j.setCasillaActual(tablero.obtenerCasillaNumero(0));
+            j.setSaldo(7500);
+        }
+        
+        jugadorActual = jugadores.get((int) (Math.random() * jugadores.size()));
+    }
+    
+    public ArrayList<Jugador> getJugadores(){
+        return this.jugadores;
+    }
+    
+    public ArrayList<Sorpresa> getMazo() {
+        return this.mazo;
     }
 }

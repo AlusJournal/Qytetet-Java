@@ -64,9 +64,8 @@ public class Casilla {
     }
     
     boolean estaHipotecada(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return titulo.getHipotecada();
     }
-    
     
     public int getCoste(){
         return coste;
@@ -116,7 +115,12 @@ public class Casilla {
     }
     
     boolean soyEdificable(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean esEdificable = false;
+        if (casilla == TipoCasilla.CALLE){
+            esEdificable = true; 
+        }
+        
+        return esEdificable; 
     }
     
     boolean tengoPropietario(){

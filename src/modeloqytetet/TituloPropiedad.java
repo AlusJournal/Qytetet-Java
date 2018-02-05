@@ -17,7 +17,7 @@ public class TituloPropiedad {
     private final int hipotecaBase; 
     private final int precioEdificar; 
     private Jugador propietario;
-    private Casilla casillaActual;
+    private Casilla casilla;
     
     public TituloPropiedad(String nombre, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar){
         this.nombre = nombre; 
@@ -61,7 +61,7 @@ public class TituloPropiedad {
     }
     
     public void setCasilla(Casilla casilla){
-        this.casillaActual = casilla;
+        this.casilla = casilla;
     }
     
     public void setHipotecada(boolean hipotecada){
@@ -73,8 +73,17 @@ public class TituloPropiedad {
     }
     
     boolean tengoPropietario(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean propietario = false;
+        if (this.propietario != null){
+            propietario = true;
+        }
+        return propietario;
     }
+    
+    Casilla getCasilla(){
+        return casilla;
+    }
+    
     
     @Override
     public String toString() {
