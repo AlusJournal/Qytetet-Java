@@ -66,7 +66,10 @@ public class Casilla {
     }
     
     int edificarHotel(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int nuevoNumero = numHoteles + 1;
+        setNumHoteles(nuevoNumero);
+        int costeEdificarHotel = titulo.getPrecioEdificar(); 
+        return costeEdificarHotel;
     }
     
     boolean estaHipotecada(){
@@ -114,7 +117,13 @@ public class Casilla {
         return sePuedeEdificar;
     }
     boolean sePuedeEdificarHotel(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean sePuedeEdificar = true;
+        if(numCasas>4){
+            if(numHoteles<4){
+                sePuedeEdificar = true;
+            }
+        }
+        return sePuedeEdificar;
     }
     
     public void setNumHoteles(int numHoteles){
@@ -140,9 +149,9 @@ public class Casilla {
     
     int venderTitulo(){
         titulo.setPropietario(null);
+        int precioCompra = coste+(numCasas + numHoteles)*titulo.getPrecioEdificar();
         setNumHoteles(0);
         setNumCasas(0);
-        int precioCompra = coste+(numCasas + numHoteles)*titulo.getPrecioEdificar();
         return (int)(precioCompra+titulo.getFactorRevalorizacion()*precioCompra);
     }
     

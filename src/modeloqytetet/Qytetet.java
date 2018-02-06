@@ -97,7 +97,18 @@ public class Qytetet {
     }
     
     public boolean edificarHotel(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar"); 
+         boolean puedoEdificar = false;
+        if (casilla.soyEdificable()){
+            boolean sePuedeEdificar = casilla.sePuedeEdificarHotel();
+            if(sePuedeEdificar){
+                puedoEdificar = jugadorActual.puedoEdificarHotel(casilla);
+                if (puedoEdificar){
+                    int costeEdificarHotel = casilla.edificarHotel();
+                    jugadorActual.modificarSaldo(costeEdificarHotel);
+                }
+            }
+        }
+        return puedoEdificar; 
     }
     
     public Sorpresa getCartaActual(){
