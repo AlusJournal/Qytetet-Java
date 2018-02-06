@@ -36,28 +36,67 @@ public class Jugador {
     
     public boolean tengoPropiedades(){
         boolean tengo = true;
-        if(propiedades.size() == 0)
+        if(propiedades.isEmpty())
             tengo = false;
         return tengo;
     }
+    
     boolean actualizarPosicion(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        if(casilla.getNumeroCasilla() < casillaActual.getNumeroCasilla()){
+            modificarSaldo(Qytetet.getInstance().SALDO_SALIDA);
+        }
+        boolean tienePropietario = false;
+        setCasillaActual(casilla);
+        if(casilla.soyEdificable()){
+            tienePropietario = casilla.tengoPropietario();
+            if(casilla.tengoPropietario()){
+                if (!casilla.propietarioEncarcelado()){
+                    int costeAlquiler = casilla.cobrarAlquiler();
+                    modificarSaldo((-1)*costeAlquiler);
+                }
+            }
+        }
+        
+        if (casilla.getTipo() == TipoCasilla.IMPUESTO){
+            int coste = casilla.getCoste();
+            modificarSaldo((-1)*coste);
+        }
+        return tienePropietario;
     }
+    
     boolean comprarTitulo(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean puedoComprar = false;
+        if (casillaActual.soyEdificable()){
+            boolean tengoPropietario = casillaActual.tengoPropietario();
+            if(!tengoPropietario){
+                int costeCompra = casillaActual.getCoste();
+                if (costeCompra <= getSaldo()){
+                    TituloPropiedad titulo = casillaActual.asignarPropietario(this);
+                    propiedades.add(titulo);
+                    modificarSaldo((-1)*costeCompra);
+                    puedoComprar = true; 
+                }
+            }
+        }
+        return puedoComprar;
     }
+    
     Sorpresa devolverCartaLibertad(){
         Sorpresa antiguaCarta = cartaLibertad;
         Qytetet.getInstance().getMazo().add(antiguaCarta);
         cartaLibertad = null;
         return antiguaCarta;
     }
+    
     void irACarcel(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        setCasillaActual(casilla);
+        setEncarcelado(true);
     }
+    
     void modificarSaldo(int cantidad){
         saldo += cantidad;
     }
+    
     int obtenerCapital(){
         int capital = saldo;
         for(TituloPropiedad p: propiedades){
@@ -67,6 +106,7 @@ public class Jugador {
         }
         return capital;
     }
+    
     ArrayList<TituloPropiedad> obtenerPropiedadesHipotecadas(boolean hipotecada){
         ArrayList<TituloPropiedad> titulos = new ArrayList();
   
@@ -87,24 +127,42 @@ public class Jugador {
         }
         return titulos;
     }
+    
     void pagarCobrarPorCasaYHotel(int cantidad){
-        throw new UnsupportedOperationException("Sin implementar");
+        int numeroTotal = cuantasCasasHotelesTengo();
+        modificarSaldo(numeroTotal*cantidad);
     }
+    
     boolean pagarLibertad(int cantidad){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean tengoSaldo = tengoSaldo(cantidad);
+        if(tengoSaldo){
+            modificarSaldo((-1)*cantidad);
+        }
+        return tengoSaldo; 
     }
+    
     boolean puedoEdificarCasa(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean esMia = esDeMiPropiedad(casilla);
+        boolean tengoSaldo = false;
+        if(esMia){
+            int costeEdificarCasa = casilla.getPrecioEdificar();
+            tengoSaldo = tengoSaldo(costeEdificarCasa);
+        }
+        return (esMia && tengoSaldo);
     }
+    
     boolean puedoEdificarHotel(Casilla casilla){
         throw new UnsupportedOperationException("Sin implementar");
     }
+    
     boolean puedoHipotecar(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        return (esDeMiPropiedad(casilla) && !casilla.getTitulo().getHipotecada()) ;
     }
+    
     boolean puedoPagarHipoteca(Casilla casilla){
         throw new UnsupportedOperationException("Sin implementar");
     }
+    
     boolean puedoVenderPropiedad(Casilla casilla){
         boolean puedo = false;
         if (esDeMiPropiedad(casilla)){
@@ -112,15 +170,19 @@ public class Jugador {
         }
         return puedo;
     }
+    
     void setCartaLibertad(Sorpresa carta){
         this.cartaLibertad = carta;
     }
+    
     void setCasillaActual(Casilla casilla){
         this.casillaActual = casilla;
     }
+    
     void setEncarcelado(boolean encarcelado){
         this.encarcelado = encarcelado;
     }
+    
     boolean tengoCartaLibertad(){
         boolean tengo = false;
         if (cartaLibertad != null){
@@ -128,9 +190,13 @@ public class Jugador {
         }
         return tengo;
     }
+    
     void venderPropiedad(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        int precioVenta = casilla.venderTitulo();
+        modificarSaldo(precioVenta);
+        eliminarDeMisPropiedades(casilla);
     }
+    
     int cuantasCasasHotelesTengo(){
         int total = 0;
         for(TituloPropiedad titulo: propiedades){
@@ -138,11 +204,13 @@ public class Jugador {
         }
         return total; 
     }
+    
     void eliminarDeMisPropiedades(Casilla casilla){
         if(esDeMiPropiedad(casilla)){
             propiedades.remove(casilla.getTitulo());
         }
     }
+    
     boolean esDeMiPropiedad(Casilla casilla){
         boolean tengo = false;
         for (TituloPropiedad titulo : propiedades){
@@ -152,6 +220,7 @@ public class Jugador {
         }
         return tengo;
     }
+    
     boolean tengoSaldo(int cantidad){
         boolean tengo = false;
         if (cantidad < saldo){
@@ -168,8 +237,13 @@ public class Jugador {
         return this.saldo;
     }
     
+    public String getNombre() {
+        return this.nombre;
+    }
+    
     @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", saldo=" + saldo + "}";
     }
+
 }

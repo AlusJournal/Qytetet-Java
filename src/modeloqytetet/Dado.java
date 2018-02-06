@@ -18,7 +18,7 @@ public class Dado {
     private Dado(){
     }
     
-    public Dado getInstance(){
+    public static Dado getInstance(){
         return instance;
     }
     
