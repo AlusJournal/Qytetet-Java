@@ -6,6 +6,7 @@
 package modeloqytetet;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -179,12 +180,12 @@ public class Qytetet {
          Casilla casillaPosicion = jugadorActual.getCasillaActual();
          Casilla nuevaCasilla = tablero.obtenerNuevaCasilla(casillaPosicion, valorDado);
          boolean tienePropietario = jugadorActual.actualizarPosicion(nuevaCasilla);
-         if(nuevaCasilla.soyEdificable()){
+         if(!nuevaCasilla.soyEdificable()){
              if(nuevaCasilla.getTipo() == TipoCasilla.JUEZ){
                  encarcelarJugador();
              }
              else if(nuevaCasilla.getTipo() == TipoCasilla.SORPRESA){
-                 cartaActual=mazo.get(0);
+                 cartaActual = mazo.get(0);
                  mazo.remove(0);
              }
          }
@@ -249,6 +250,7 @@ public class Qytetet {
         mazo.add(new Sorpresa("El Presidente te otorga un presupuesto solicitado", 600, TipoSorpresa.PAGARCOBRAR));
         mazo.add(new Sorpresa("Matt Murdock te ha defendido en un juicio y debes pagar sus honorarios", -700, TipoSorpresa.PAGARCOBRAR));
         mazo.add(new Sorpresa("Elisabeth II te ha dado un indulto y puedes abandonar la prisión", 0, TipoSorpresa.SALIRCARCEL));
+        Collections.shuffle(mazo);
     }
     private void inicializarJugadores(ArrayList<String> nombres){
         for (String j: nombres){

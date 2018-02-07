@@ -117,7 +117,7 @@ public class Casilla {
         return sePuedeEdificar;
     }
     boolean sePuedeEdificarHotel(){
-        boolean sePuedeEdificar = true;
+        boolean sePuedeEdificar = false;
         if(numCasas>4){
             if(numHoteles<4){
                 sePuedeEdificar = true;
@@ -157,6 +157,7 @@ public class Casilla {
     
     private void setTitulo(TituloPropiedad titulo){
         this.titulo = titulo;
+        this.titulo.setCasilla(this);
     }
     
     void asignarTituloPropiedad(){

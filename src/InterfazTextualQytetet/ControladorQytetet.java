@@ -10,6 +10,7 @@ import modeloqytetet.Casilla;
 import modeloqytetet.Jugador;
 import modeloqytetet.MetodoSalirCarcel;
 import modeloqytetet.Qytetet;
+import modeloqytetet.TituloPropiedad;
 
 /**
  *
@@ -105,12 +106,25 @@ public class ControladorQytetet {
                 if(listaPropiedades.size() > 0 && opcion != 0){
                     propiedadElegida = vista.menuElegirPropiedad(listaPropiedades);
                 }
+                boolean puedo;
                 switch (opcion){
                     case 1:
-                        juego.edificarCasa(casillas.get(propiedadElegida));
+                        puedo = juego.edificarCasa(casillas.get(propiedadElegida));
+                        if(puedo){
+                            vista.mostrar("Has podido construir una casa.");
+                        }
+                        else{
+                            vista.mostrar("No se ha podido construir la casa.");
+                        }
                         break;
                     case 2:
-                        juego.edificarHotel(casillas.get(propiedadElegida));
+                        puedo = juego.edificarHotel(casillas.get(propiedadElegida));
+                        if(puedo){
+                            vista.mostrar("Has podido construir un hotel.");
+                        }
+                        else{
+                            vista.mostrar("No se ha podido construir el hotel.");
+                        }
                         break;
                     case 3:
                         juego.venderPropiedad(casillas.get(propiedadElegida));
