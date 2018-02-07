@@ -166,7 +166,11 @@ public class Jugador {
     }
     
     boolean puedoPagarHipoteca(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean puedoPagar=false;
+        if(puedoHipotecar(casilla)&& saldo>casilla.getCoste()){
+            puedoPagar=true;   
+        }
+        return puedoPagar;
     }
     
     boolean puedoVenderPropiedad(Casilla casilla){

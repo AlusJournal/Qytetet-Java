@@ -15,7 +15,9 @@ public class Qytetet {
     //Singleton
     private static Qytetet instance = new Qytetet();
     
-    private Qytetet(){  
+    private Qytetet(){
+        inicializarTablero();
+        inicializarCartasSorpresa();
     }
     
     public static Qytetet getInstance(){
@@ -73,7 +75,18 @@ public class Qytetet {
     }
     
     public boolean cancelarHipoteca(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar"); 
+        boolean puedoHipotecar = false;
+        if(casilla.soyEdificable()){
+            boolean sePuedeHipotecar = casilla.estaHipotecada();
+            if(sePuedeHipotecar){
+                puedoHipotecar = !jugadorActual.puedoHipotecar(casilla);
+                if(puedoHipotecar){
+                    int cantidadRecibida = casilla.hipotecar();
+                    jugadorActual.modificarSaldo((-1)*cantidadRecibida);
+                }
+            }
+        }
+        return puedoHipotecar;
     }
     
     public boolean comprarTituloPropiedad(){
