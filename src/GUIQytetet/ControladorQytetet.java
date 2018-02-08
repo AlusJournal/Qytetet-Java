@@ -7,6 +7,7 @@ package GUIQytetet;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modeloqytetet.Casilla;
 import modeloqytetet.Jugador;
 import modeloqytetet.MetodoSalirCarcel;
 import modeloqytetet.Qytetet;
@@ -21,6 +22,7 @@ public class ControladorQytetet extends javax.swing.JFrame {
     
     private Jugador jugadorActual;
     private Sorpresa sorpresaActual;
+    private Casilla casillaActual;
     /**
      * Creates new form ControladorQytetet
      */
@@ -48,7 +50,6 @@ public class ControladorQytetet extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbSalirCarcelDado.setText("Salir Cárcel Dado");
-        jbSalirCarcelDado.setEnabled(false);
         jbSalirCarcelDado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirCarcelDadoActionPerformed(evt);
@@ -56,7 +57,6 @@ public class ControladorQytetet extends javax.swing.JFrame {
         });
 
         jbSalirCarcelPagando.setText("Salir Cárcel Pagando");
-        jbSalirCarcelPagando.setEnabled(false);
         jbSalirCarcelPagando.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirCarcelPagandoActionPerformed(evt);
@@ -146,7 +146,33 @@ public class ControladorQytetet extends javax.swing.JFrame {
     }//GEN-LAST:event_jbAplicarSorpresaActionPerformed
 
     private void jbJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbJugarActionPerformed
+        this.jbJugar.setEnabled(false);
         boolean resultado = modeloQytetet.jugar(); 
+        
+        switch (jugadorActual.getCasillaActual().getTipo()){
+            case SORPRESA:
+                System.out.println(modeloQytetet.getCartaActual().toString());
+                this.jbAplicarSorpresa.setEnabled(true);
+                break;
+            case CALLE: 
+                if(resultado){
+                    JOptionPane.showMessageDialog(this,"Has caido en una casilla con propietario");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Has caido en una casilla sin propietario ¿Quieres comprar?");
+                    this.jbComprar.setEnabled(true);
+                }
+                break;
+            case JUEZ:
+                JOptionPane.showMessageDialog(this,"Has caido en la casilla Juez. Vas a la carcel.");
+                break;
+            case PARKING:
+            case IMPUESTO:
+            case SALIDA:
+            case CARCEL:
+                break;
+        }
+        this.jbSiguienteJugador.setEnabled(true);
         this.vistaQytetet.actualizar(modeloQytetet);
     }//GEN-LAST:event_jbJugarActionPerformed
 
@@ -181,13 +207,37 @@ public class ControladorQytetet extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSalirCarcelPagandoActionPerformed
 
     private void jbComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComprarActionPerformed
-        boolean resultado = modeloQytetet.comprarTituloPropiedad(); 
+        this.jbComprar.setEnabled(false);
+        boolean puedoComprar = modeloQytetet.comprarTituloPropiedad();
+        if (puedoComprar) {
+            JOptionPane.showMessageDialog(this,"Has comprado la casilla " + jugadorActual.getCasillaActual().getNumeroCasilla());
+        } else {
+            JOptionPane.showMessageDialog(this,"No puedes comprar la casilla " + jugadorActual.getCasillaActual().getNumeroCasilla());
+        }
+        this.jbSiguienteJugador.setEnabled(true);
         this.vistaQytetet.actualizar(modeloQytetet);
     }//GEN-LAST:event_jbComprarActionPerformed
 
     private void jbSiguienteJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSiguienteJugadorActionPerformed
-        Jugador siguiente = modeloQytetet.siguienteJugador(); 
-        this.vistaQytetet.actualizar(modeloQytetet);
+        this.jbSiguienteJugador.setEnabled(false);
+        if (jugadorActual.getSaldo() <= 0) {
+            // bancarrota
+            JOptionPane.showMessageDialog(this, "Ha terminado el juego porque el jugador actual ha caído en bancarrota");
+            
+            this.jbJugar.setEnabled(false);
+        } 
+        else {
+            jugadorActual = modeloQytetet.siguienteJugador();
+            casillaActual = jugadorActual.getCasillaActual();
+            
+            this.jbJugar.setEnabled(true);
+            this.jbComprar.setEnabled(false);
+            this.jbAplicarSorpresa.setEnabled(false);
+            this.jbSalirCarcelDado.setEnabled(false);
+            this.jbSalirCarcelPagando.setEnabled(false);
+        }
+        
+            this.vistaQytetet.actualizar(modeloQytetet);
     }//GEN-LAST:event_jbSiguienteJugadorActionPerformed
 
     public void actualizar(Qytetet descripcionQytetet){
@@ -195,6 +245,7 @@ public class ControladorQytetet extends javax.swing.JFrame {
         
         this.jugadorActual = modeloQytetet.getJugadorActual();
         this.sorpresaActual = modeloQytetet.getCartaActual();
+        this.casillaActual = modeloQytetet.getJugadorActual().getCasillaActual();
         
         this.habilitarComenzarTurno();
         

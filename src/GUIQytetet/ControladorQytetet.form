@@ -85,7 +85,6 @@
     <Component class="javax.swing.JButton" name="jbSalirCarcelDado">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir C&#xe1;rcel Dado"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirCarcelDadoActionPerformed"/>
@@ -94,7 +93,6 @@
     <Component class="javax.swing.JButton" name="jbSalirCarcelPagando">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir C&#xe1;rcel Pagando"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirCarcelPagandoActionPerformed"/>
