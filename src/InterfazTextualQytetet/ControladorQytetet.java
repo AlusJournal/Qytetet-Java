@@ -127,13 +127,31 @@ public class ControladorQytetet {
                         }
                         break;
                     case 3:
-                        juego.venderPropiedad(casillas.get(propiedadElegida));
+                        puedo = juego.venderPropiedad(casillas.get(propiedadElegida));
+                        if(puedo){
+                            vista.mostrar("Has podido vender la propiedad.");
+                        }
+                        else{
+                            vista.mostrar("No se ha podido vender la propiedad.");
+                        }
                         break;
                     case 4:
-                        juego.hipotecarPropiedad(casillas.get(propiedadElegida));
+                        puedo = juego.hipotecarPropiedad(casillas.get(propiedadElegida));
+                        if(puedo){
+                            vista.mostrar("Has podido hipotecar la propiedad.");
+                        }
+                        else{
+                            vista.mostrar("No se ha podido hipotecar la propiedad.");
+                        }
                         break;
                     case 5:
-                        juego.cancelarHipoteca(casillas.get(propiedadElegida));
+                        puedo = juego.cancelarHipoteca(casillas.get(propiedadElegida));
+                        if(puedo){
+                            vista.mostrar("Has podido cancelar la hipoteca.");
+                        }
+                        else{
+                            vista.mostrar("No se ha podido cancelar la hipoteca.");
+                        }
                         break;
                     default:
                         break;
