@@ -11,14 +11,14 @@ import java.util.Random;
  *
  * @author Paula Ruiz
  */
-public class Dado {
+public class Dado_antiguo {
     //Singleton
-    private static Dado instance = new Dado();
+    private static Dado_antiguo instance = new Dado_antiguo();
     
-    private Dado(){
+    private Dado_antiguo(){
     }
     
-    public static Dado getInstance(){
+    public static Dado_antiguo getInstance(){
         return instance;
     }
     

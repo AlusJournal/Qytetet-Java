@@ -6,6 +6,7 @@
 package InterfazTextualQytetet;
 
 import java.util.ArrayList;
+import modeloqytetet.Calle;
 import modeloqytetet.Casilla;
 import modeloqytetet.Jugador;
 import modeloqytetet.MetodoSalirCarcel;
@@ -100,7 +101,8 @@ public class ControladorQytetet {
                     casillas = juego.propiedadesHipotecadasJugador(false);
                 }
                 for(Casilla c : casillas){
-                    listaPropiedades.add(c.getTitulo().getNombre());
+                    Calle calle = (Calle) c;
+                    listaPropiedades.add(calle.getTitulo().getNombre());
                 }
                 int propiedadElegida = 0;
                 if(listaPropiedades.size() > 0 && opcion != 0){
@@ -175,11 +177,12 @@ public class ControladorQytetet {
    }
    
    private Casilla elegirPropiedad(ArrayList<Casilla> propiedades){
-       vista.mostrar("\tCasilla\tTitulo");
+       vista.mostrar("\tCalle\tTitulo");
         int seleccion;
         ArrayList<String> listaPropiedades= new ArrayList();
         for ( Casilla c: propiedades) {
-            listaPropiedades.add( "\t"+c.getNumeroCasilla()+"\t"+c.getTitulo().getNombre()); 
+            Calle calle = (Calle) c;
+            listaPropiedades.add( "\t"+ calle.getNumeroCasilla()+ "\t" + calle.getTitulo().getNombre()); 
         }
         seleccion=vista.menuElegirPropiedad(listaPropiedades);  
         return propiedades.get(seleccion);
