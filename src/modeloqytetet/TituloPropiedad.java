@@ -56,6 +56,10 @@ public class TituloPropiedad {
         return precioEdificar;
     }
     
+    public Jugador getPropietario(){
+        return propietario;
+    }
+    
     boolean propietarioEncarcelado(){
         return propietario.getEncarcelado();
     }

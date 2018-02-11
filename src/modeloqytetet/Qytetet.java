@@ -64,6 +64,12 @@ public class Qytetet {
                }
            }
        }
+       else if(cartaActual.getTipo()==TipoSorpresa.CONVERTIRME){
+           Especulador jugador_especulador = jugadorActual.convertirme(cartaActual.getValor());
+           jugadores.remove(jugadorActual);
+           jugadorActual = jugador_especulador;
+           jugadores.add(jugadorActual);
+       }
        
        if (cartaActual.getTipo()==TipoSorpresa.SALIRCARCEL){
            jugadorActual.setCartaLibertad(cartaActual);
@@ -250,6 +256,8 @@ public class Qytetet {
         mazo.add(new Sorpresa("El Presidente te otorga un presupuesto solicitado", 600, TipoSorpresa.PAGARCOBRAR));
         mazo.add(new Sorpresa("Matt Murdock te ha defendido en un juicio y debes pagar sus honorarios", -700, TipoSorpresa.PAGARCOBRAR));
         mazo.add(new Sorpresa("Elisabeth II te ha dado un indulto y puedes abandonar la prisión", 0, TipoSorpresa.SALIRCARCEL));
+        mazo.add(new Sorpresa("¿Pero a tu no te avisaron de que el hotel duMort era peligroso? Pues parace que tarde, ahora eres vampiro", 3000, TipoSorpresa.CONVERTIRME));
+        mazo.add(new Sorpresa("¿Esconder la verdad? Todos lo hemos hecho alguna vez, bienvenida Mentirosa -A.", 5000, TipoSorpresa.CONVERTIRME));
         Collections.shuffle(mazo);
     }
     private void inicializarJugadores(ArrayList<String> nombres){

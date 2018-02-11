@@ -111,15 +111,15 @@ public class Casilla {
     }
     boolean sePuedeEdificarCasa(){
         boolean sePuedeEdificar = false; 
-        if (numCasas<4){
+        if (numCasas<(getTitulo().getPropietario().getFactorEspeculador()*4)){
             sePuedeEdificar = true;
         }
         return sePuedeEdificar;
     }
     boolean sePuedeEdificarHotel(){
         boolean sePuedeEdificar = false;
-        if(numCasas>4){
-            if(numHoteles<4){
+        if(numCasas>(getTitulo().getPropietario().getFactorEspeculador()*4)){
+            if(numHoteles<(getTitulo().getPropietario().getFactorEspeculador()*4)){
                 sePuedeEdificar = true;
             }
         }

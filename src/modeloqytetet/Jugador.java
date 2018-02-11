@@ -18,12 +18,26 @@ public class Jugador {
     private Sorpresa cartaLibertad;
     private Casilla casillaActual;
     private ArrayList<TituloPropiedad> propiedades;
+    static int factorEspeculador = 1;
     
     public Jugador(String nombre){
         this.nombre = nombre;
         this.encarcelado = false;
         this.saldo = 7500;
         this.propiedades = new ArrayList();
+    }
+    
+    protected Jugador(Jugador jugador){
+        this.nombre = jugador.nombre;
+        this.encarcelado = jugador.encarcelado;
+        this.saldo = jugador.saldo;
+        this.casillaActual = jugador.casillaActual;
+        this.cartaLibertad = jugador.cartaLibertad;
+        
+        this.propiedades = new ArrayList<>();
+        for (TituloPropiedad propiedad: jugador.propiedades){
+            this.propiedades = jugador.propiedades;
+        }
     }
     
     public Casilla getCasillaActual(){
@@ -41,7 +55,7 @@ public class Jugador {
         return tengo;
     }
     
-    boolean actualizarPosicion(Casilla casilla){
+    protected boolean actualizarPosicion(Casilla casilla){
         if(casilla.getNumeroCasilla() < casillaActual.getNumeroCasilla()){
             modificarSaldo(Qytetet.getInstance().SALDO_SALIDA);
         }
@@ -59,9 +73,17 @@ public class Jugador {
         
         if (casilla.getTipo() == TipoCasilla.IMPUESTO){
             int coste = casilla.getCoste();
-            modificarSaldo((-1)*coste);
+            pagarImpuestos(coste);
         }
         return tienePropietario;
+    }
+    
+    protected void pagarImpuestos(int cantidad){
+        modificarSaldo((-1)*cantidad);
+    }
+    
+    protected Especulador convertirme(int fianza){
+        return new Especulador(this, fianza);
     }
     
     boolean comprarTitulo(){
@@ -249,6 +271,10 @@ public class Jugador {
     
     public String getNombre() {
         return this.nombre;
+    }
+    
+    public int getFactorEspeculador() {
+        return factorEspeculador;
     }
     
     @Override

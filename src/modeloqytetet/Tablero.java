@@ -81,8 +81,8 @@ public class Tablero {
         casillas.add(jessica);
         Casilla gilmoregirls = new Casilla(6, 950, new TituloPropiedad("Girlmore Girls", 65, 12, 300, 300));
         casillas.add(gilmoregirls);
-        Casilla senseeight = new Casilla(4, 900, new TituloPropiedad("Sense8", 60, 11, 250, 300)); 
-        casillas.add(senseeight);
+        Casilla pll = new Casilla(4, 900, new TituloPropiedad("Pretty Little Liars", 60, 11, 250, 300)); 
+        casillas.add(pll);
         Casilla daredevil = new Casilla(2, 800, new TituloPropiedad("Daredevil", 55, 10, 200, 250));
         casillas.add(daredevil);
         Casilla shadowhunters = new Casilla(1, 700, new TituloPropiedad("ShadowHunters", 50, 10, 150, 250));
