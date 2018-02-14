@@ -7,7 +7,7 @@ package modeloqytetet;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class Calle extends Casilla {
     private int numHoteles;

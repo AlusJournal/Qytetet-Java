@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class Dado_antiguo {
     //Singleton

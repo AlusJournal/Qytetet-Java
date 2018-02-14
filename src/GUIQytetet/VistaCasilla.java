@@ -7,7 +7,7 @@ package GUIQytetet;
 
 /**
  *
- * @author Shiri
+ * @author Paula
  */
 public class VistaCasilla extends javax.swing.JPanel {
 

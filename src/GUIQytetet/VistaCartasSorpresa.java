@@ -7,7 +7,7 @@ package GUIQytetet;
 
 /**
  *
- * @author Shiri
+ * @author Paula
  */
 public class VistaCartasSorpresa extends javax.swing.JPanel {
 

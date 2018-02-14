@@ -15,7 +15,7 @@ import modeloqytetet.TituloPropiedad;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class ControladorQytetet {
    private Qytetet juego;

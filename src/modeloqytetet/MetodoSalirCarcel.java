@@ -7,7 +7,7 @@ package modeloqytetet;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public enum MetodoSalirCarcel {
     TIRANDODADO, PAGANDOLIBERTAD;

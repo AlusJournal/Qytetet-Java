@@ -15,7 +15,7 @@ import modeloqytetet.Sorpresa;
 
 /**
  *
- * @author Shiri
+ * @author Paula
  */
 public class ControladorQytetet extends javax.swing.JFrame {
     private static Qytetet modeloQytetet = Qytetet.getInstance();

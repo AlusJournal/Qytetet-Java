@@ -7,7 +7,7 @@ package modeloqytetet;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public enum TipoSorpresa {
     PAGARCOBRAR, IRACASILLA, PORCASAHOTEL, PORJUGADOR, SALIRCARCEL, CONVERTIRME; 

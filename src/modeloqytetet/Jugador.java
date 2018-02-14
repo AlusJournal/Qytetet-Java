@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class Jugador {
     private boolean encarcelado;

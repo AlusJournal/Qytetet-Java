@@ -7,7 +7,7 @@ package modeloqytetet;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class OtraCasilla extends Casilla{
     

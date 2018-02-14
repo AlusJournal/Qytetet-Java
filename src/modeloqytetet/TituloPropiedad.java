@@ -7,7 +7,7 @@ package modeloqytetet;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class TituloPropiedad {
     private final String nombre;

@@ -10,7 +10,7 @@ import modeloqytetet.Sorpresa;
 
 /**
  *
- * @author Shiri
+ * @author Paula
  */
 public class VistaQytetet extends javax.swing.JPanel {
 

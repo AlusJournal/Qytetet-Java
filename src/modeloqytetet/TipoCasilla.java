@@ -7,7 +7,7 @@ package modeloqytetet;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public enum TipoCasilla {
     SALIDA, CALLE, SORPRESA, CARCEL, JUEZ, IMPUESTO, PARKING

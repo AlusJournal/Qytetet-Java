@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class PruebaQytetet {
     private final ArrayList<Sorpresa> mazo = new ArrayList(); 

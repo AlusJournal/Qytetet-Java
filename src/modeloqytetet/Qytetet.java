@@ -10,7 +10,7 @@ import java.util.Collections;
 
 /**
  *
- * @author Paula Ruiz
+ * @author Paula
  */
 public class Qytetet {
     //Singleton

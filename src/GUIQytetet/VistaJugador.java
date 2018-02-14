@@ -7,7 +7,7 @@ package GUIQytetet;
 
 /**
  *
- * @author Shiri
+ * @author Paula
  */
 public class VistaJugador extends javax.swing.JPanel {
 
